@@ -1,24 +1,112 @@
 import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+import data from '../data.json'
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+let commentsElements = "";
+let repliesComments = "";
 
-setupCounter(document.querySelector('#counter'))
+for (let i in data["comments"]) {
+  const image = data["comments"][i].user.image.webp;
+  const score = data["comments"][i].score;
+  const username = data["comments"][i].user.username;
+  const createdAt = data["comments"][i].createdAt;
+  const content = data["comments"][i].content;
+  
+  console.log(score);
+  console.log(i);
+
+
+  commentsElements +=  `<div class="commentsContainer" data-value="${username}" id="comments-${i}">
+                          <div class="score">
+                            <button class="btn_plus" ><img src="./src/assets/icon-plus.svg" alt=""></button>
+                            <p data-value="${score}" class="scoreName">${score}</p>
+                            <button class="btn_minus"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                          </div>
+                          <div class="username">
+                            <img src="${image}" alt="hola">
+                            <p data-value="${username}" id="username-${i}">${username}</p>
+                            <p class="createdAt">${createdAt}</p>
+                          </div>
+                          <div class="replies">
+                            <button>
+                              <img src="./src/assets/icon-reply.svg" alt="">
+                              <p>Reply</p>
+                            </button>
+                          </div>
+                          <div class="content">
+                            <p>${content}</p>
+                          </div>    
+                        </div>
+  
+                              `
+  document.querySelector("#comments").innerHTML = commentsElements;
+
+  
+}
+
+for (let i in data["comments"]) {
+  
+  const replies = data["comments"][1].replies;
+  
+  repliesComments = `<div class="repliesCommentsContainer" data-value="${replies[i].user.username}" id="repliesComment-${i}">
+                          <div class="score">
+                            <button class="btn_plus"><img src="./src/assets/icon-plus.svg" alt=""></button>
+                            <p data-value=${replies[i].score}" id="repliesScoreName-${i}">${replies[i].score}</p>
+                            <button class="btn_minus"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                          </div>
+                          <div class="username">
+                            <img src="${replies[i].user.image.webp}" alt="hola">
+                            <p>${replies[i].user.username}</p>
+                            <p class="createdAt">${replies[i].createdAt}</p>
+                          </div>
+                          <div class="replies">
+                            <button>
+                              <img src="./src/assets/icon-reply.svg"" alt="">
+                              <p>REPLY</p>
+                            </button>
+                          </div>
+                          <div class="content">
+                            <p>${replies[i].content}</p>
+                          </div>    
+                        </div>
+  
+  
+  `
+  document.querySelector(".repliesComments").insertAdjacentHTML("beforeend", repliesComments);
+
+}
+
+const btnPlus = document.querySelectorAll(".btn_plus");
+const btnMinus = document.querySelectorAll(".btn_minus");
+
+for (let i = 0; i < btnPlus.length; i++) {
+  btnPlus[i].addEventListener("click", () => {
+    console.log(btnPlus);
+    const commentProdName = document.getElementById(`comments-${i}`);
+    if (commentProdName) {
+      const scoreName = commentProdName.querySelector(".scoreName");
+      console.log(commentProdName);
+      console.log(scoreName.dataset.value);
+      if (scoreName) {
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+      }
+    }
+    const repliesCommentProdName = document.getElementById(`repliesComment-${i}`);
+    console.log(repliesCommentProdName);    
+  })
+  btnMinus[i].addEventListener("click", () => {
+    console.log(btnMinus);
+    const commentProdName = document.getElementById(`comments-${i}`);
+    if (commentProdName) {
+      const scoreName = commentProdName.querySelector(".scoreName");
+      console.log(commentProdName);
+      console.log(scoreName.dataset.value);
+      if (scoreName) {
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+      }
+    }
+  })
+}
