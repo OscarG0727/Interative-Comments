@@ -43,15 +43,15 @@ for (let i in data["comments"]) {
   
 }
 
-for (let i in data["comments"]) {
+for (let i in data["comments"][1].replies) {
   
   const replies = data["comments"][1].replies;
   
   repliesComments = `<div class="repliesCommentsContainer" data-value="${replies[i].user.username}" id="repliesComment-${i}">
                           <div class="score">
-                            <button class="btn_plus"><img src="./src/assets/icon-plus.svg" alt=""></button>
-                            <p data-value=${replies[i].score}" id="repliesScoreName-${i}">${replies[i].score}</p>
-                            <button class="btn_minus"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                            <button class="btnReplies_plus"><img src="./src/assets/icon-plus.svg" alt=""></button>
+                            <p data-value="${replies[i].score}" class="repliesScoreName">${replies[i].score}</p>
+                            <button class="btnReplies_minus"><img src="./src/assets/icon-minus.svg" alt=""></button>
                           </div>
                           <div class="username">
                             <img src="${replies[i].user.image.webp}" alt="hola">
@@ -77,6 +77,8 @@ for (let i in data["comments"]) {
 
 const btnPlus = document.querySelectorAll(".btn_plus");
 const btnMinus = document.querySelectorAll(".btn_minus");
+const btnRepliesPlus = document.querySelectorAll(".btnReplies_plus");
+const btnRepliesMinus = document.querySelectorAll(".btnReplies_minus");
 
 for (let i = 0; i < btnPlus.length; i++) {
   btnPlus[i].addEventListener("click", () => {
@@ -92,8 +94,6 @@ for (let i = 0; i < btnPlus.length; i++) {
         scoreName.dataset.value = valueScore + 1;
       }
     }
-    const repliesCommentProdName = document.getElementById(`repliesComment-${i}`);
-    console.log(repliesCommentProdName);    
   })
   btnMinus[i].addEventListener("click", () => {
     console.log(btnMinus);
@@ -101,6 +101,32 @@ for (let i = 0; i < btnPlus.length; i++) {
     if (commentProdName) {
       const scoreName = commentProdName.querySelector(".scoreName");
       console.log(commentProdName);
+      console.log(scoreName.dataset.value);
+      if (scoreName) {
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+      }
+    }
+  })
+  btnRepliesPlus[i].addEventListener("click", () => {
+    const repliesCommentProdName = document.getElementById(`repliesComment-${i}`);
+    console.log(repliesCommentProdName); 
+    if(repliesCommentProdName){
+      const scoreName = repliesCommentProdName.querySelector(".repliesScoreName");
+      console.log(scoreName);
+      if (scoreName) {
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+      }
+    }   
+  })
+  btnRepliesMinus[i].addEventListener("click", () => {
+    const repliesCommentProdName = document.getElementById(`repliesComment-${i}`);
+    console.log(repliesCommentProdName); 
+    if(repliesCommentProdName){
+      const scoreName = repliesCommentProdName.querySelector(".repliesScoreName");
       console.log(scoreName.dataset.value);
       if (scoreName) {
         const valueScore = Number(scoreName.dataset.value);
