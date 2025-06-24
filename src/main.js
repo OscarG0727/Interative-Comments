@@ -27,7 +27,7 @@ for (let i in data["comments"]) {
                             <p class="createdAt">${createdAt}</p>
                           </div>
                           <div class="replies">
-                            <button>
+                            <button data-value="${username}" class="btn_replies">
                               <img src="./src/assets/icon-reply.svg" alt="">
                               <p>Reply</p>
                             </button>
@@ -59,7 +59,7 @@ for (let i in data["comments"][1].replies) {
                             <p class="createdAt">${replies[i].createdAt}</p>
                           </div>
                           <div class="replies">
-                            <button>
+                            <button data-value="${replies[i].user.username}" class="btn_replies">
                               <img src="./src/assets/icon-reply.svg"" alt="">
                               <p>REPLY</p>
                             </button>
@@ -134,5 +134,57 @@ for (let i = 0; i < btnPlus.length; i++) {
         scoreName.dataset.value = valueScore - 1;
       }
     }
+  })
+}
+
+const repliesBtn = document.querySelectorAll(".btn_replies");
+
+for (let i = 0; i < repliesBtn.length; i++) {
+  repliesBtn[i].addEventListener("click", () => {
+    const nameReplies = document.getElementById(`comments-${i}`)
+    const btnNameReplies = nameReplies.querySelector(".btn_replies");
+    console.log(btnNameReplies.dataset.value);
+    
+    const replies = data["comments"][1].replies;
+    
+    
+    const commentProdName = `<div class="repliesCommentsContainer" data-value="${replies[1].user.username}" id="repliesComment-${i}">
+                                <div class="score">
+                                  <button class="btnReplies_plus"><img src="./src/assets/icon-plus.svg" alt=""></button>
+                                  <p data-value="0" class="repliesScoreName">0</p>
+                                  <button class="btnReplies_minus"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                                </div>
+                                <div class="username">
+                                  <img src="${replies[1].user.image.webp}" alt="hola">
+                                  <p>${replies[1].user.username}</p>
+                                  <p class="createdAt">recently</p>
+                                </div>
+                                <div class="replies">
+                                  <button class="btn_send">
+                                    <p>Send</p>
+                                  </button>
+                                </div>
+                                <div class="content" id="repliesContent">
+                                  <p class="pTextInput"><textarea maxlength="300" class="newTextInputComment">@${btnNameReplies.dataset.value} </textarea></p>
+                                </div>    
+                            </div>
+    
+    
+    `
+    document.querySelector(".repliesComments").insertAdjacentHTML("beforeend", commentProdName);
+
+    const btnSend = document.querySelector(".btn_send");
+
+    btnSend.addEventListener("click", () => {
+      console.log("su respuesta se ha enviado");
+      const repliesContent = document.querySelector(".newTextInputComment");
+      const repliesTextContent = document.querySelector(".pTextInput");
+      console.log(repliesContent);
+      console.log(repliesTextContent);
+      
+      // repliesContent.textContent = 
+
+    })
+
   })
 }
