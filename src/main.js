@@ -291,15 +291,57 @@ btnEdit.addEventListener("click", () => {
   }
 });
 
-// const btnUpdate = document.querySelector(".btn_update");
-// const updateText = document.querySelector(".textEditArea");
-// const editTextComment = document.getElementById(`repliesComment-${1}`);
+///
 
-// btnUpdate.addEventListener("click", () => {
+const image = data["currentUser"].image.png
+const currentUser = `<img class="userImgUser" src="${image}" alt="hola">`
 
-//   updateText.remove();
+document.querySelector(".inputCommentUsername").insertAdjacentHTML("beforeend", currentUser);
 
-//   const newUpdateTextComment = `<p class="pContentComment"><b class="bRepliesComment">@${username}</b> ${replies[1].content}</p>`
+///
 
-//   editTextComment.querySelector(".content").insertAdjacentHTML("beforeend", newUpdateTextComment);
-// })
+const btnDelete = document.querySelector(".btn_delete");
+
+btnDelete.addEventListener("click", () => {
+  console.log("se elimino el comentario")
+  const winEmergent = ` <div class="winEmergentContainer">
+                          <div class="emergentContent">
+                            <div class="emergentText" >
+                              <h2>Delete Comment</h2>
+                            </div>
+                            <div class="emergent_question">
+                              <p>Are you sure want to delete thie comment? This will remove the comment and can't be undone</p>
+                            </div>
+                            <div class="emergent_button">
+                              <button class="btn_Emergent_cancel">NO, CANCEL</button>
+                              <button class="btn_Emergent_delete">YES, DELETE</button>
+                            </div>
+                          </div>
+                        </div>`
+
+  const winEmergentContainer = document.querySelector(".winEmergentContainer")
+    
+  if (!winEmergentContainer) {
+    document.querySelector(".windowsEemergent").insertAdjacentHTML("beforeend", winEmergent);
+  }
+
+  if (winEmergentContainer) {
+    winEmergentContainer.style.display = "flex"
+  }
+
+             
+  const btnEmergentCancel = document.querySelector(".btn_Emergent_cancel");
+  const winEmergentRemove = document.querySelector(".winEmergentContainer");
+  
+  btnEmergentCancel.addEventListener("click", () => {
+    winEmergentRemove.style.display = "None"
+  })
+
+  const btnEmergentDelete = document.querySelector(".btn_Emergent_delete");
+
+  btnEmergentDelete.addEventListener("click", () => {
+    const commentRemoveContainer = document.getElementById(`repliesComment-${1}`);
+    commentRemoveContainer.remove();
+    winEmergentRemove.style.display = "None"
+  });
+})
