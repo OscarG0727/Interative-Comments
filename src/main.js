@@ -1,4 +1,6 @@
-import './style.css'
+import './styles/style.css'
+import './styles/styles_desktop.css'
+import './styles/style.css'
 import data from '../data.json'
 
 let commentsElements = "";
@@ -45,6 +47,7 @@ for (let i in data["comments"]) {
 
 for (let i in data["comments"][1].replies) {
   
+  const username = data["comments"][1].user.username;
   const replies = data["comments"][1].replies;
   
   repliesComments = `<div class="repliesCommentsContainer" data-value="${replies[i].user.username}" id="repliesComment-${i}">
@@ -56,16 +59,20 @@ for (let i in data["comments"][1].replies) {
                           <div class="username">
                             <img src="${replies[i].user.image.webp}" alt="hola">
                             <p>${replies[i].user.username}</p>
+                            <div class="propietarycomment">
+                            </div>
                             <p class="createdAt">${replies[i].createdAt}</p>
                           </div>
+                          <div class="deleteContainer">
+                          </div>
                           <div class="replies">
-                            <button data-value="${replies[i].user.username}" class="btn_replies">
+                            <button data-value="${replies[i].user.username}" class="btnRepliesComments">
                               <img src="./src/assets/icon-reply.svg"" alt="">
                               <p>REPLY</p>
                             </button>
                           </div>
                           <div class="content">
-                            <p>${replies[i].content}</p>
+                            <p class="pContentComment"><b class="bRepliesComment">@${username}</b> ${replies[i].content}</p>
                           </div>    
                         </div>
   
@@ -80,10 +87,47 @@ const btnMinus = document.querySelectorAll(".btn_minus");
 const btnRepliesPlus = document.querySelectorAll(".btnReplies_plus");
 const btnRepliesMinus = document.querySelectorAll(".btnReplies_minus");
 
+const repliesCommentText = document.getElementById(`repliesComment-${1}`);
+const repliesCommentindex = document.getElementById(`repliesComment-${0}`);
+const propietarycommentremove = repliesCommentindex.querySelector(".propietarycomment");
+propietarycommentremove.remove();
+
+const bRepliesComment = repliesCommentText.querySelector(".bRepliesComment");
+const repliesBtnRemove = repliesCommentText.querySelector(".btnRepliesComments");
+if (repliesCommentText) {
+  const replies = data["comments"][1].replies;
+  const username = replies[0].user.username;
+  bRepliesComment.textContent = "@" + username; 
+  if (repliesCommentText) {
+    const propietarycomment = `<p>you</p>`
+
+    repliesCommentText.querySelector(".propietarycomment").insertAdjacentHTML("beforeend", propietarycomment);
+    
+    const deletehtml = `<button data-value="" class="btn_delete">
+                          <img src="./src/assets/icon-delete.svg" alt="">
+                          <p>Delete</p>
+                        </button>`
+  
+    repliesCommentText.querySelector(".deleteContainer").insertAdjacentHTML("beforeend", deletehtml);
+
+    repliesBtnRemove.remove();
+
+    const editbtn = ` <button data-value="" class="btn_edit">
+                          <img src="./src/assets/icon-edit.svg" alt="">
+                          <p>Edit</p>
+                      </button>`
+
+    repliesCommentText.querySelector(".replies").insertAdjacentHTML("beforeend", editbtn);
+  }
+}
+
+
+
 for (let i = 0; i < btnPlus.length; i++) {
   btnPlus[i].addEventListener("click", () => {
     console.log(btnPlus);
     const commentProdName = document.getElementById(`comments-${i}`);
+    console.log("aca ProdName", commentProdName);
     if (commentProdName) {
       const scoreName = commentProdName.querySelector(".scoreName");
       console.log(commentProdName);
@@ -111,7 +155,7 @@ for (let i = 0; i < btnPlus.length; i++) {
   })
   btnRepliesPlus[i].addEventListener("click", () => {
     const repliesCommentProdName = document.getElementById(`repliesComment-${i}`);
-    console.log(repliesCommentProdName); 
+    console.log("aca repliesProdName", repliesCommentProdName); 
     if(repliesCommentProdName){
       const scoreName = repliesCommentProdName.querySelector(".repliesScoreName");
       console.log(scoreName);
@@ -138,6 +182,7 @@ for (let i = 0; i < btnPlus.length; i++) {
 }
 
 const repliesBtn = document.querySelectorAll(".btn_replies");
+const repliesBtnComment = document.querySelectorAll(".btnRepliesComments");
 
 for (let i = 0; i < repliesBtn.length; i++) {
   repliesBtn[i].addEventListener("click", () => {
@@ -149,23 +194,18 @@ for (let i = 0; i < repliesBtn.length; i++) {
     
     
     const commentProdName = `<div class="repliesCommentsContainer" data-value="${replies[1].user.username}" id="repliesComment-${i}">
-                                <div class="score">
-                                  <button class="btnReplies_plus"><img src="./src/assets/icon-plus.svg" alt=""></button>
-                                  <p data-value="0" class="repliesScoreName">0</p>
-                                  <button class="btnReplies_minus"><img src="./src/assets/icon-minus.svg" alt=""></button>
-                                </div>
-                                <div class="username">
-                                  <img src="${replies[1].user.image.webp}" alt="hola">
-                                  <p>${replies[1].user.username}</p>
+                                <div class="usernameReplies">
+                                  <img class="imgUser" src="${replies[1].user.image.webp}" alt="hola">
+                                  <p class="pUser">${replies[1].user.username}</p>
                                   <p class="createdAt">recently</p>
                                 </div>
-                                <div class="replies">
-                                  <button class="btn_send">
+                                <div class="repliesbutton">
+                                  <button class="btnCommentSend">
                                     <p>Send</p>
                                   </button>
                                 </div>
-                                <div class="content" id="repliesContent">
-                                  <p class="pTextInput"><textarea maxlength="300" class="newTextInputComment">@${btnNameReplies.dataset.value} </textarea></p>
+                                <div class="contentReplies" id="repliesContent">
+                                  <p class="pTextInput"><textarea class="textEditAreaComment" maxlength="300" class="newTextInputComment"> @${btnNameReplies.dataset.value} </textarea></p>
                                 </div>    
                             </div>
     
@@ -173,18 +213,93 @@ for (let i = 0; i < repliesBtn.length; i++) {
     `
     document.querySelector(".repliesComments").insertAdjacentHTML("beforeend", commentProdName);
 
-    const btnSend = document.querySelector(".btn_send");
+    const btnSend = document.querySelector(".btnCommentSend");
 
     btnSend.addEventListener("click", () => {
       console.log("su respuesta se ha enviado");
-      const repliesContent = document.querySelector(".newTextInputComment");
-      const repliesTextContent = document.querySelector(".pTextInput");
-      console.log(repliesContent);
-      console.log(repliesTextContent);
-      
-      // repliesContent.textContent = 
-
     })
 
   })
 }
+
+repliesBtnComment[0].addEventListener("click", () => {
+    const nameReplies = document.getElementById(`repliesComment-${0}`)
+    const btnNameReplies = nameReplies.querySelector(".btnRepliesComments");
+    
+    const replies = data["comments"][1].replies;
+    
+    
+    const commentProdName = `<div class="repliesCommentsContainerNew" data-value="${replies[1].user.username}" id="repliesComment-${0}">
+                                <div class="usernameReplies">
+                                  <img src="${replies[1].user.image.webp}" alt="hola">
+                                  <p>${replies[1].user.username}</p>
+                                  <p class="createdAt">recently</p>
+                                </div>
+                                <div class="repliesbutton">
+                                  <button class="btnCommentSend">
+                                    <p>Send</p>
+                                  </button>
+                                </div>
+                                <div class="contentReplies" id="repliesContent">
+                                  <p class="pTextInput"><textarea class="textEditAreaComment" maxlength="300" class="newTextInputComment"> @${btnNameReplies.dataset.value} </textarea></p>
+                                </div>    
+                            </div>
+    
+    
+    `
+    document.querySelector(".repliesComments").insertAdjacentHTML("beforeend", commentProdName);
+
+    const btnSend = document.querySelector(".btnCommentSend");
+
+    btnSend.addEventListener("click", () => {
+      console.log("su respuesta se ha enviado");
+    })
+
+  })
+
+
+
+////
+
+const username = data["comments"][1].user.username;
+const replies = data["comments"][1].replies;
+const btnEdit = document.querySelector(".btn_edit");
+
+btnEdit.addEventListener("click", () => {
+  console.log("esta editando su texto");
+  const editTextComment = document.getElementById(`repliesComment-${1}`);
+  const editText = editTextComment.querySelector(".pContentComment");
+  console.log(editText);
+  if(editText) {
+    
+    editText.remove();
+
+    const newTextComment = `<textarea class="textEditArea" maxlength="300"> @${username} ${replies[1].content}</textarea>
+    `
+
+    editTextComment.querySelector(".content").insertAdjacentHTML("beforeend", newTextComment);
+
+    btnEdit.remove();
+
+    const updateBtnComment = `<button data-value="" class="btn_update">
+                                <p>Update</p>
+                              </button>`
+                          
+    editTextComment.querySelector(".replies").insertAdjacentHTML("beforeend", updateBtnComment);
+
+    
+  }
+});
+
+// const btnUpdate = document.querySelector(".btn_update");
+// const updateText = document.querySelector(".textEditArea");
+// const editTextComment = document.getElementById(`repliesComment-${1}`);
+
+// btnUpdate.addEventListener("click", () => {
+
+//   updateText.remove();
+
+//   const newUpdateTextComment = `<p class="pContentComment"><b class="bRepliesComment">@${username}</b> ${replies[1].content}</p>`
+
+//   editTextComment.querySelector(".content").insertAdjacentHTML("beforeend", newUpdateTextComment);
+// })
