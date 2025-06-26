@@ -260,6 +260,18 @@
       justify-content: flex-start;
       row-gap: 25px;
     }
+    .propietarycomment {
+        display: flex;
+        width: 9%;
+        height: 45%;
+        border-radius: 2px;
+        font-size: 0.6rem;
+        font-weight: bold;
+        font-family: var(--font-family);
+        background-color: hsl(238, 40%, 52%);
+        color: white;
+        justify-content: center;
+    }
     .emergentText {
         font-size: 1.4rem;
         font-weight: bold;
