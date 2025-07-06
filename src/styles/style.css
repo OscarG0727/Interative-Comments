@@ -64,6 +64,12 @@
     column-gap: 3%;
     align-items: center;
   }
+  .imgUser{
+    width: 10%;
+  }
+  .currentImgUser{
+    width: 20%;
+  }
   .propietarycomment {
     display: flex;
     width: 9%;
