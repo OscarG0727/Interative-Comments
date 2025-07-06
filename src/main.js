@@ -419,7 +419,7 @@ btnDelete.addEventListener("click", () => {
   const btnEmergentDelete = document.querySelector(".btn_Emergent_delete");
 
   btnEmergentDelete.addEventListener("click", () => {
-    const commentRemoveContainer = document.getElementById(`repliesComment-${1}`);
+    const commentRemoveContainer = document.getElementById(`repliesComment-${4}`);
     commentRemoveContainer.remove();
     winEmergentRemove.style.display = "None"
   });
