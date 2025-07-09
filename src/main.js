@@ -40,7 +40,7 @@ for (let i in data["comments"]) {
                             <p class="pContentComment">${content}</p>
                           </div>    
                         </div>
-                        <div id="replies-${i}">
+                        <div class="repliesNewContainer" id="replies-${i}">
                         </div>
                         `
   document.querySelector("#comments").innerHTML = commentsElements;
@@ -50,6 +50,7 @@ for (let i in data["comments"]) {
   
 }
 for (let i in data["comments"][1].replies) {
+
   const username = data["comments"][1].user.username;
   const replies = data["comments"][1].replies;
   console.log(replies[i].id);
@@ -82,7 +83,9 @@ for (let i in data["comments"][1].replies) {
                           <div id="repliesCommentsMenssage-${i}">
                           </div>
   `
-  document.querySelector("#comments").insertAdjacentHTML("beforeend", repliesComments);
+  document.querySelector(".repliesComments").insertAdjacentHTML("beforeend", repliesComments);
+  
+  
   
 }
 

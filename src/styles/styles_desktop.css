@@ -23,7 +23,7 @@
         grid-template-rows: 20% 80%;
         border-radius: 10px;
         row-gap: 18%;
-        column-gap: 1%;
+        column-gap: 1.5%;
     }
     .score {
         width: 65%;
@@ -97,16 +97,23 @@
         font-size: 1.2rem;
 
     }
+    .repliesComments {
+        border-left: 3px solid hsl(0, 0%, 89%);
+        margin-left: 24.5%;
+    }
+    .repliesNewContainer {
+        margin-left: 24.5%;
+        border-left: 3px solid hsl(0, 0%, 89%);
+    }
     .repliesCommentsContainer {
         font-family: var(--font-family);
         margin: 2%;
-        width: 50%;
-        margin-left: 28%;
+        width: 68%;
+        margin-left: 4%;
         padding: 2%;
         background-color: white;
         height: 8rem;
         display: grid;
-        border-radius: 10px;
         grid-template-columns: 10% 78% 10%;
         grid-template-rows: 20% 80%;
         border-radius: 10px;
@@ -119,13 +126,12 @@
     .repliesCommentsContainerNew {
         font-family: var(--font-family);
         margin: 2%;
-        width: 50%;
-        margin-left: 28%;
+        width: 68%;
+        margin-left: 4%;
         padding: 2%;
         background-color: white;
         height: 6rem;
         display: grid;
-        border-radius: 10px;
         grid-template-columns: 10% 78% 10%;
         grid-template-rows: 20% 80%;
         border-radius: 10px;

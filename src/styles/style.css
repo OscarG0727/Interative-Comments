@@ -22,10 +22,18 @@
     grid-template-columns: 50% 50%;
     row-gap: 3%;
   }
+  .repliesComments {
+    border-left: 3px solid hsl(0, 0%, 89%);
+    margin-left: 2%;
+  }
+  .repliesNewContainer {
+    border-left: 3px solid hsl(0, 0%, 89%);
+    margin-left: 2%;
+  }
   .repliesCommentsContainer, .repliesCommentsContainerNew {
     font-family: var(--font-family);
     margin: 2%;
-    margin-left: 7%;
+    margin-left: 3%;
     padding: 3%;
     background-color: white;
     height: 12rem;
