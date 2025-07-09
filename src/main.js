@@ -50,7 +50,10 @@ for (let i in data["comments"]) {
   
 }
 for (let i in data["comments"][1].replies) {
-
+  if (data["comments"][i].replies == "undefined") {
+    continue
+  }
+  {
   const username = data["comments"][1].user.username;
   const replies = data["comments"][1].replies;
   console.log(replies[i].id);
@@ -86,7 +89,7 @@ for (let i in data["comments"][1].replies) {
   document.querySelector(".repliesComments").insertAdjacentHTML("beforeend", repliesComments);
   
   
-  
+  }
 }
 
 const btnPlus = document.querySelectorAll(".btn_plus");
@@ -315,7 +318,7 @@ for (let i = 0; i < repliesBtn.length; i++) {
                                 </div>
                                 <div class="repliesbutton">
                                   <button class="btnCommentSend">
-                                    <p>Send</p>
+                                    <p>REPLY</p>
                                   </button>
                                 </div>
                                 <div class="contentReplies" id="repliesContent">
@@ -352,7 +355,7 @@ repliesBtnComment[0].addEventListener("click", () => {
                                 </div>
                                 <div class="repliesbutton">
                                   <button class="btnCommentSend">
-                                    <p>Send</p>
+                                    <p>REPLY</p>
                                   </button>
                                 </div>
                                 <div class="contentReplies" id="repliesContent">
