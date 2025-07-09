@@ -50,10 +50,6 @@ for (let i in data["comments"]) {
   
 }
 for (let i in data["comments"][1].replies) {
-  if (data["comments"][i].replies == "undefined") {
-    continue
-  }
-  {
   const username = data["comments"][1].user.username;
   const replies = data["comments"][1].replies;
   console.log(replies[i].id);
@@ -88,8 +84,6 @@ for (let i in data["comments"][1].replies) {
   `
   document.querySelector("#comments").insertAdjacentHTML("beforeend", repliesComments);
   
-  
-  }
 }
 
 const btnPlus = document.querySelectorAll(".btn_plus");
@@ -135,49 +129,68 @@ for (let i = 0; i < btnPlus.length; i++) {
   btnPlus[i].addEventListener("click", () => {
     
     
-    
     const replies = data["comments"][1].replies;
     
     if (btnPlus[i].dataset.value == 3) {
-
+      
       const repliesCommentProdName = document.getElementById(`repliesComment-${replies[0].id}`);
-      console.log("aca repliesProdName", repliesCommentProdName); 
+      console.log("aca repliesProdName", repliesCommentProdName);  
       const scoreName = repliesCommentProdName.querySelector(".scoreName");
+      if (scoreName.dataset.value == replies[0].score) {
         console.log(scoreName.dataset.value);
-        if (scoreName) {
-          const valueScore = Number(scoreName.dataset.value);
-          scoreName.textContent = valueScore + 1;
-          scoreName.dataset.value = valueScore + 1;
-        }   
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+      }
+      else{
+        console.log(scoreName.dataset.value);
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+        console.log(scoreName.dataset.value);
+      }  
     }
     if(btnPlus[i].dataset.value == 4) {
-
+      
       const repliesCommentProdName = document.getElementById(`repliesComment-${replies[1].id}`);
       console.log("aca repliesProdName", repliesCommentProdName);  
       const scoreName = repliesCommentProdName.querySelector(".scoreName");
+      if (scoreName.dataset.value == replies[1].score) {
         console.log(scoreName.dataset.value);
-        if (scoreName) {
-          const valueScore = Number(scoreName.dataset.value);
-          scoreName.textContent = valueScore + 1;
-          scoreName.dataset.value = valueScore + 1;
-        }      
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+      }
+      else{
+        console.log(scoreName.dataset.value);
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+        console.log(scoreName.dataset.value);
+      }
     }
     
     if (btnPlus[i].dataset.value == 1 || btnPlus[i].dataset.value == 2){
       
+      const score = data["comments"][i].score;
       const id = data["comments"][i].id
 
       const commentProdName = document.getElementById(`comments-${id}`);
       console.log("aca ProdName", commentProdName.dataset.value);
-      if (commentProdName) {
-        const scoreName = commentProdName.querySelector(".scoreName");
+      const scoreName = commentProdName.querySelector(".scoreName");
+      if (scoreName.dataset.value == score) {
         console.log(commentProdName);
         console.log(scoreName.dataset.value);
-        if (scoreName) {
-          const valueScore = Number(scoreName.dataset.value);
-          scoreName.textContent = valueScore + 1;
-          scoreName.dataset.value = valueScore + 1;
-        }
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+      }
+      else{
+      console.log(scoreName.dataset.value);
+      const valueScore = Number(scoreName.dataset.value);
+      scoreName.textContent = valueScore - 1;
+      scoreName.dataset.value = valueScore - 1;
+      console.log(scoreName.dataset.value);
       }
     }
   })
@@ -185,46 +198,66 @@ for (let i = 0; i < btnPlus.length; i++) {
     console.log(btnMinus);
     const replies = data["comments"][1].replies;
     
-    if (btnPlus[i].dataset.value == 3) {
+    if (btnMinus[i].dataset.value == 3) {
 
       const repliesCommentProdName = document.getElementById(`repliesComment-${replies[0].id}`);
-      console.log("aca repliesProdName", repliesCommentProdName); 
+      console.log("aca repliesProdName", repliesCommentProdName);  
       const scoreName = repliesCommentProdName.querySelector(".scoreName");
+      if (scoreName.dataset.value == replies[0].score) {
         console.log(scoreName.dataset.value);
-        if (scoreName) {
-          const valueScore = Number(scoreName.dataset.value);
-          scoreName.textContent = valueScore - 1;
-          scoreName.dataset.value = valueScore - 1;
-        }   
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+      }
+      else{
+        console.log(scoreName.dataset.value);
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+        console.log(scoreName.dataset.value);
+      }   
     }
-    if(btnPlus[i].dataset.value == 4) {
+    if(btnMinus[i].dataset.value == 4) {
 
       const repliesCommentProdName = document.getElementById(`repliesComment-${replies[1].id}`);
       console.log("aca repliesProdName", repliesCommentProdName);  
       const scoreName = repliesCommentProdName.querySelector(".scoreName");
+      if (scoreName.dataset.value == replies[1].score) {
         console.log(scoreName.dataset.value);
-        if (scoreName) {
-          const valueScore = Number(scoreName.dataset.value);
-          scoreName.textContent = valueScore - 1;
-          scoreName.dataset.value = valueScore - 1;
-        }      
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+      }
+      else{
+        console.log(scoreName.dataset.value);
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore + 1;
+        scoreName.dataset.value = valueScore + 1;
+        console.log(scoreName.dataset.value);
+      }   
     }
     
-    if (btnPlus[i].dataset.value == 1 || btnPlus[i].dataset.value == 2){
+    if (btnMinus[i].dataset.value == 1 || btnMinus[i].dataset.value == 2){
       
+      const score = data["comments"][i].score;
       const id = data["comments"][i].id
 
       const commentProdName = document.getElementById(`comments-${id}`);
       console.log("aca ProdName", commentProdName.dataset.value);
-      if (commentProdName) {
-        const scoreName = commentProdName.querySelector(".scoreName");
+      const scoreName = commentProdName.querySelector(".scoreName");
+      if (scoreName.dataset.value == score) {
         console.log(commentProdName);
         console.log(scoreName.dataset.value);
-        if (scoreName) {
-          const valueScore = Number(scoreName.dataset.value);
-          scoreName.textContent = valueScore - 1;
-          scoreName.dataset.value = valueScore - 1;
-        }
+        const valueScore = Number(scoreName.dataset.value);
+        scoreName.textContent = valueScore - 1;
+        scoreName.dataset.value = valueScore - 1;
+      }
+      else{
+      console.log(scoreName.dataset.value);
+      const valueScore = Number(scoreName.dataset.value);
+      scoreName.textContent = valueScore + 1;
+      scoreName.dataset.value = valueScore + 1;
+      console.log(scoreName.dataset.value);
       }
     }
   })
