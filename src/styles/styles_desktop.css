@@ -11,9 +11,9 @@
         background-color: hsl(240, 57%, 95%);
     }
     .commentsContainer {
-        width: 57%;
+        width: 68%;
         margin: 2%;
-        margin-left: 21%;
+        margin-left: 14%;
         height: 8rem;
         padding: 2%;
         font-family: var(--font-family);
@@ -59,10 +59,11 @@
         align-items: center;
     }
     .imgUser{
-    width: 7%;
+        width: 7%;
     }
     .currentImgUser{
-    width: 55%;
+        width: 70%;
+        height: 53px;
     }
     .createdAt{
         color: hsl(211, 10%, 45%);
@@ -99,7 +100,7 @@
     }
     .repliesComments {
         border-left: 3px solid hsl(0, 0%, 89%);
-        margin-left: 24.5%;
+        margin-left: 18%;
     }
     .repliesNewContainer {
         margin-left: 24.5%;
@@ -108,8 +109,8 @@
     .repliesCommentsContainer {
         font-family: var(--font-family);
         margin: 2%;
-        width: 68%;
-        margin-left: 4%;
+        width: 73.5%;
+        margin-left: 5.5%;
         padding: 2%;
         background-color: white;
         height: 8rem;
@@ -126,8 +127,8 @@
     .repliesCommentsContainerNew {
         font-family: var(--font-family);
         margin: 2%;
-        width: 68%;
-        margin-left: 4%;
+        width: 73%;
+        margin-left: 6%;
         padding: 2%;
         background-color: white;
         height: 6rem;
@@ -162,16 +163,17 @@
 
     .inputComment{
         font-family: var(--font-family);
-        width: 57%;
+        width: 68%;
         margin: 2%;
-        margin-left: 21%;
+        margin-bottom: 7%;
+        margin-left: 14%;
+        height: 6rem;
         padding: 2%;
         background-color: white;
         border-radius: 15px;
         display: grid;
-        grid-template-columns: 12% 70% 14%;;
+        grid-template-columns: 11% 68% 16%;;
         column-gap: 2%;
-        align-items: center;
     }
     .inputCommentText {
         height: 80px;
@@ -192,7 +194,7 @@
     }
     .btn_send {
         width: 100%;
-        height: 35px;
+        height: 45px;
         font-weight: bold;
         color: white;
         background-color: hsl(238, 40%, 52%);
@@ -201,7 +203,7 @@
     }
     .textAreaComment{
         grid-column: 2/3;
-        height: 50px;
+        height: 5.9rem;
         border: 1px solid rgb(212, 212, 212);
         border-radius: 5px;
     }
