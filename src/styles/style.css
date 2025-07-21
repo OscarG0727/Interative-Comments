@@ -30,7 +30,7 @@
     border-left: 3px solid hsl(0, 0%, 89%);
     margin-left: 2%;
   }
-  .repliesCommentsContainer, .repliesCommentsContainerNew {
+  .repliesContentContainer, .repliesContentContainerNew {
     font-family: var(--font-family);
     margin: 2%;
     margin-left: 3%;

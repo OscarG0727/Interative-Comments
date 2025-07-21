@@ -62,8 +62,8 @@
         width: 7%;
     }
     .currentImgUser{
-        width: 70%;
-        height: 53px;
+        width: 55%;
+        height: 55%;
     }
     .createdAt{
         color: hsl(211, 10%, 45%);
@@ -107,6 +107,9 @@
         border-left: 3px solid hsl(0, 0%, 89%);
     }
     .repliesCommentsContainer {
+        background-color: transparent;
+    }
+    .repliesContentContainer {
         font-family: var(--font-family);
         margin: 2%;
         width: 73.5%;
@@ -115,7 +118,7 @@
         background-color: white;
         height: 8rem;
         display: grid;
-        grid-template-columns: 10% 78% 10%;
+        grid-template-columns: 9% 79% 10%;
         grid-template-rows: 20% 80%;
         border-radius: 10px;
         row-gap: 18%;
@@ -124,11 +127,11 @@
     .pContentComment {
         font-size: 1.14rem;
     }
-    .repliesCommentsContainerNew {
+    .repliesContentContainerNew {
         font-family: var(--font-family);
         margin: 2%;
-        width: 73%;
-        margin-left: 6%;
+        width: 73.5%;
+        margin-left: 5.5%;
         padding: 2%;
         background-color: white;
         height: 6rem;
@@ -149,6 +152,7 @@
     }
     .btn_delete{
         margin-top:-1%;
+        margin-left: 5%;
         font-weight: bold;
         color: red;
         border: none;
@@ -172,7 +176,7 @@
         background-color: white;
         border-radius: 15px;
         display: grid;
-        grid-template-columns: 11% 68% 16%;;
+        grid-template-columns: 10% 70% 16%;;
         column-gap: 2%;
     }
     .inputCommentText {
@@ -212,7 +216,7 @@
         border: 1px solid rgb(212, 212, 212);
         border-radius: 5px;
         width: 100%;
-        height: 90%;
+        height: 75%;
     }
     .btn_update, .btnCommentSend {
         background-color: hsl(238, 40%, 52%);
