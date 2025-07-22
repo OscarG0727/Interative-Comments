@@ -17,7 +17,7 @@ for (let i in data["comments"]) {
   console.log(score);
   console.log(i);
   console.log(id);
-  
+
 
   for (let y in data["comments"][i].replies) {
 
@@ -130,71 +130,51 @@ if (repliesCommentText) {
 
 const btnPlus = document.querySelectorAll(".btn_plus");
 const btnMinus = document.querySelectorAll(".btn_minus");
-let counter = 0;
-
 
 btnPlus.forEach(plus =>
   plus.addEventListener("click", () => {
-    
-    
     const idContainerPlus = plus.id.slice(8);
     const containerPlusSelect = document.getElementById(idContainerPlus);
 
-    if (containerPlusSelect){
+    if (containerPlusSelect) {
       const scorePlusSelect = containerPlusSelect.querySelector(".scoreName");
-      console.log(scorePlusSelect.dataset.value);
-      
-      if (counter == 0) {
-        counter += 1;
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore + 1;
-        scorePlusSelect.dataset.value = valueScore + 1;
-        console.log(scorePlusSelect.dataset.value);
-      }
-      else {
-        counter -= 1;
-        console.log(scorePlusSelect.dataset.value);
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore - 1;
-        scorePlusSelect.dataset.value = valueScore - 1;
+      const flag = scorePlusSelect.dataset.flag ? Boolean(scorePlusSelect.dataset.flag) : false;
+      let currentButtonValue = Number(scorePlusSelect.dataset.value)
+
+      if (!flag) {
+        currentButtonValue += 1;
+        scorePlusSelect.dataset.flag = "true";
       }
 
+      scorePlusSelect.textContent = currentButtonValue.toString();
+      scorePlusSelect.dataset.value = currentButtonValue.toString();
     }
+  }
+  )
+);
 
-
-  })
-)
 btnMinus.forEach(minus =>
   minus.addEventListener("click", () => {
-    
+
     const idContainerMinus = minus.id.slice(9);
     const containerMinusSelect = document.getElementById(idContainerMinus);
     console.log(containerMinusSelect);
 
-    if (containerMinusSelect){
-      const scorePlusSelect = containerMinusSelect.querySelector(".scoreName");
-      console.log(scorePlusSelect.dataset.value);
-      
-      if (counter == 0) {
-        counter += 1;
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore - 1;
-        scorePlusSelect.dataset.value = valueScore - 1;
-        console.log(scorePlusSelect.dataset.value);
-      }
-      else {
-        counter -= 1;
-        console.log(scorePlusSelect.dataset.value);
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore + 1;
-        scorePlusSelect.dataset.value = valueScore + 1;
+    if (containerMinusSelect) {
+      const scoreMinusSelect = containerMinusSelect.querySelector(".scoreName");
+      const flag = scoreMinusSelect.dataset.flag ? Boolean(scoreMinusSelect.dataset.flag) : false;
+      let currentButtonValue = Number(scoreMinusSelect.dataset.value)
+
+      if (!flag) {
+        currentButtonValue -= 1;
+        scoreMinusSelect.dataset.flag = "true";
       }
 
+      scoreMinusSelect.textContent = currentButtonValue.toString();
+      scoreMinusSelect.dataset.value = currentButtonValue.toString();
     }
-
-
   }
-)
+  )
 )
 
 ////
@@ -210,13 +190,13 @@ repliesBtn.forEach(replycomment =>
     const nameRepliesSelect = document.getElementById(idContainerReply);
     console.log("nameRepliesSelect", nameRepliesSelect);
     const btnNameReplies = nameRepliesSelect.querySelector(".btn_replies");
-    console.log(btnNameReplies);    
-   
+    console.log(btnNameReplies);
 
-    
+
+
     const repliesUser = data["comments"][1].replies;
-    
-    
+
+
     const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
                                 <div class="usernameReplies">
                                   <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
@@ -255,13 +235,13 @@ repliesBtnComment.forEach(replycomment =>
     console.log("nameRepliesSelect", nameRepliesSelect);
     const btnNameReplies = nameRepliesSelect.querySelector(".btnRepliesComments");
     const nameReplies = nameRepliesSelect.querySelector(".repliesCommentsMenssage");
-    console.log(btnNameReplies);    
-    console.log("namereplies", nameReplies);    
+    console.log(btnNameReplies);
+    console.log("namereplies", nameReplies);
 
-    
+
     const repliesUser = data["comments"][1].replies;
-    
-    
+
+
     const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
                                 <div class="usernameReplies">
                                   <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
