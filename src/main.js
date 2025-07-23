@@ -35,7 +35,10 @@ for (let i in data["comments"]) {
 
   let repliesComments = "";
 
-  ////
+  console.log(score);
+  console.log(i);
+  console.log(id);
+  
 
   for (let y in data["comments"][i].replies) {
 
@@ -199,51 +202,41 @@ if (repliesCommentText) {
 
 const btnPlus = document.querySelectorAll(".btn_plus"); 
 const btnMinus = document.querySelectorAll(".btn_minus");
-
-///
-
-let counterPlus = 0;
-let counterMinus = 0;
+let counter = 0;
 
 
 btnPlus.forEach(plus =>
   plus.addEventListener("click", () => {
-    
-    
     const idContainerPlus = plus.id.slice(8);
     const containerPlusSelect = document.getElementById(idContainerPlus);
 
-    if (containerPlusSelect){
+    if (containerPlusSelect) {
       const scorePlusSelect = containerPlusSelect.querySelector(".scoreName");
+      console.log(scorePlusSelect.dataset.value);
       
-      if (counterPlus == 0) {
-        counterPlus += 1;
+      if (counter == 0) {
+        counter += 1;
         const valueScore = Number(scorePlusSelect.dataset.value);
-        /*Output: al presionar el boton, cambiaremos el valor dependiendo del boton que se presione*/
-
         scorePlusSelect.textContent = valueScore + 1;
         scorePlusSelect.dataset.value = valueScore + 1;
-
-        ////
+        console.log(scorePlusSelect.dataset.value);
       }
-
-      else{
-        counterPlus -= 1;
+      else {
+        counter -= 1;
+        console.log(scorePlusSelect.dataset.value);
         const valueScore = Number(scorePlusSelect.dataset.value);
-        /*Output: al presionar el boton por segunda vez, este volvera a su valor inicial*/
-
         scorePlusSelect.textContent = valueScore - 1;
         scorePlusSelect.dataset.value = valueScore - 1;
-        
-        ////
       }
+
     }
+
+
   })
 )
-
 btnMinus.forEach(minus =>
   minus.addEventListener("click", () => {
-    
+
     const idContainerMinus = minus.id.slice(9);
     const containerMinusSelect = document.getElementById(idContainerMinus);
     console.log(containerMinusSelect);
@@ -252,30 +245,26 @@ btnMinus.forEach(minus =>
       const scorePlusSelect = containerMinusSelect.querySelector(".scoreName");
       console.log(scorePlusSelect.dataset.value);
       
-      if (counterMinus == 0) {
-        counterMinus += 1;
+      if (counter == 0) {
+        counter += 1;
         const valueScore = Number(scorePlusSelect.dataset.value);
-        /*Output: al presionar el boton, cambiaremos el valor dependiendo del boton que se presione*/
-
         scorePlusSelect.textContent = valueScore - 1;
         scorePlusSelect.dataset.value = valueScore - 1;
-        
-        ////
+        console.log(scorePlusSelect.dataset.value);
       }
-
       else {
-        counterMinus -= 1;
+        counter -= 1;
+        console.log(scorePlusSelect.dataset.value);
         const valueScore = Number(scorePlusSelect.dataset.value);
-        /*Output: al presionar el boton por segunda vez, este volvera a su valor inicial*/
-        
         scorePlusSelect.textContent = valueScore + 1;
         scorePlusSelect.dataset.value = valueScore + 1;
-        
-        ////
       }
+
     }
+
+
   }
-)
+  )
 )
 
 //// ------------------------------------------------- ////
@@ -302,13 +291,13 @@ repliesBtn.forEach(replycomment =>
     const nameRepliesSelect = document.getElementById(idContainerReply);
     console.log("nameRepliesSelect", nameRepliesSelect);
     const btnNameReplies = nameRepliesSelect.querySelector(".btn_replies");
-    console.log(btnNameReplies);    
-   
+    console.log(btnNameReplies);
 
-    
+
+
     const repliesUser = data["comments"][1].replies;
-    
-    
+
+
     const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
                                 <div class="usernameReplies">
                                   <img class="imgUserNew" src="${repliesUser[1].user.image.webp}" alt="hola">
@@ -352,13 +341,13 @@ repliesBtnComment.forEach(replycomment =>
     console.log("nameRepliesSelect", nameRepliesSelect);
     const btnNameReplies = nameRepliesSelect.querySelector(".btnRepliesComments");
     const nameReplies = nameRepliesSelect.querySelector(".repliesCommentsMenssage");
-    console.log(btnNameReplies);    
-    console.log("namereplies", nameReplies);    
+    console.log(btnNameReplies);
+    console.log("namereplies", nameReplies);
 
-    
+
     const repliesUser = data["comments"][1].replies;
-    
-    
+
+
     const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
                                 <div class="usernameReplies">
                                   <img class="imgUserNew" src="${repliesUser[1].user.image.webp}" alt="hola">
