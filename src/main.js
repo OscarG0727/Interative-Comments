@@ -3,26 +3,48 @@ import './styles/styles_desktop.css'
 import './styles/style.css'
 import data from '../data.json'
 
+//// ------------------------------------------------- ////
+
+/*Mapeo de "comments" y "repliesComments":
+
+  Crea todos los "comments" y "repliesComments", además, asigna en lugares especificados 
+  los valores estraido del "data.json".
+
+*/
+
+/*Input: creamos una variable "str" vacia, la cual contendrá todo el mapeado*/
+
 let commentsElements = "";
 
+////
+
 for (let i in data["comments"]) {
+
+  /*Input: extraemos los valores del "data.json" y los asiganamos a una variable*/
+
   const image = data["comments"][i].user.image.webp;
   const score = data["comments"][i].score;
   const username = data["comments"][i].user.username;
   const createdAt = data["comments"][i].createdAt;
   const content = data["comments"][i].content;
   const id = data["comments"][i].id
+
+  ////
+
+  /*Input: creamos una variable "str" vacia, la cual contendrá todo el mapeado*/
+
   let repliesComments = "";
 
-  console.log(score);
-  console.log(i);
-  console.log(id);
-  
+  ////
 
   for (let y in data["comments"][i].replies) {
 
+    /*Input: extraemos los valores del "data.json" y los asiganamos a una variable*/
+
     const username = data["comments"][y].user.username;
     const replies = data["comments"][i].replies;
+
+    ////
 
     repliesComments += `<div class="repliesCommentsContainer" id="containerComments-${replies[y].id}" >  
                           <div class="repliesContentContainer" data-value="${replies[y].user.username}" id="comments-${replies[y].id}">
@@ -85,25 +107,59 @@ for (let i in data["comments"]) {
                         `
 }
 
+/*Output: seleccionamos el contenedor, donde ingresará el mapeo recien creado */
+
 document.querySelector("#comments").innerHTML = commentsElements;
 
 ////
 
+//// ------------------------------------------------- ////
+
+/*Editando el repliesCommentsUser:
+
+  Añade al ultimo comments un diseño diferente ya que, el comentario es del 
+  propietario de la cuenta "juliusomo" y este tiene funciones diferentes a 
+  los demas comments.
+
+*/
+
+/*Input: seleccionamos los comments que editaremos y los asignamos a una variable*/
+
 const repliesCommentText = document.getElementById(`comments-${5}`);
 const repliesCommentindex = document.getElementById(`comments-${4}`);
 const repliesCommentindexValue = document.getElementById(`comments-${3}`);
+
+////
+
 const propietaryCommentRemove = repliesCommentindex.querySelector(".propietarycomment");
 const propietaryCommentRemoveValue = repliesCommentindexValue.querySelector(".propietarycomment");
-console.log("aca propietaryremove", propietaryCommentRemove);
+
+/*Output: eliminamos las dos variables con la clase asignada*/
+
 propietaryCommentRemove.remove();
 propietaryCommentRemoveValue.remove();
+
+////
+
 const bRepliesComment = repliesCommentText.querySelector(".bRepliesComment");
 const repliesBtnRemove = repliesCommentText.querySelector(".btnRepliesComments");
+
 if (repliesCommentText) {
+
+  /*Input: extraemos los valores de "data.json"*/
+
   const replies = data["comments"][1].replies;
   const username = replies[0].user.username;
+
+  ////
+
+  /*Output: editaremos el mapeado del último comment, añadiendole nuevas cosas*/
+
   bRepliesComment.textContent = "@" + username;
+  
+
   if (repliesCommentText) {
+
     const propietarycomment = `<p>you</p>`
 
     repliesCommentText.querySelector(".propietarycomment").insertAdjacentHTML("beforeend", propietarycomment);
@@ -121,16 +177,33 @@ if (repliesCommentText) {
                           <img src="./src/assets/icon-edit.svg" alt="">
                           <p>Edit</p>
                       </button>`
-
+                      
     repliesCommentText.querySelector(".replies").insertAdjacentHTML("beforeend", editbtn);
+  
+    ////
+
   }
 }
 
-////
+//// ------------------------------------------------- ////
 
-const btnPlus = document.querySelectorAll(".btn_plus");
+/*Evento de los botones de "score":
+
+  Al presionar uno de los dos botones "+" o "-", cambiara el valor de "score"
+  del comentario al cual corresponde el boton, este esta diseñado para que se
+  solo una vez.
+
+*/
+
+/*Input: buscamos las clases en el html y las asignaremos a una variable*/
+
+const btnPlus = document.querySelectorAll(".btn_plus"); 
 const btnMinus = document.querySelectorAll(".btn_minus");
-let counter = 0;
+
+///
+
+let counterPlus = 0;
+let counterMinus = 0;
 
 
 btnPlus.forEach(plus =>
@@ -142,28 +215,32 @@ btnPlus.forEach(plus =>
 
     if (containerPlusSelect){
       const scorePlusSelect = containerPlusSelect.querySelector(".scoreName");
-      console.log(scorePlusSelect.dataset.value);
       
-      if (counter == 0) {
-        counter += 1;
+      if (counterPlus == 0) {
+        counterPlus += 1;
         const valueScore = Number(scorePlusSelect.dataset.value);
+        /*Output: al presionar el boton, cambiaremos el valor dependiendo del boton que se presione*/
+
         scorePlusSelect.textContent = valueScore + 1;
         scorePlusSelect.dataset.value = valueScore + 1;
-        console.log(scorePlusSelect.dataset.value);
+
+        ////
       }
-      else {
-        counter -= 1;
-        console.log(scorePlusSelect.dataset.value);
+
+      else{
+        counterPlus -= 1;
         const valueScore = Number(scorePlusSelect.dataset.value);
+        /*Output: al presionar el boton por segunda vez, este volvera a su valor inicial*/
+
         scorePlusSelect.textContent = valueScore - 1;
         scorePlusSelect.dataset.value = valueScore - 1;
+        
+        ////
       }
-
     }
-
-
   })
 )
+
 btnMinus.forEach(minus =>
   minus.addEventListener("click", () => {
     
@@ -175,32 +252,47 @@ btnMinus.forEach(minus =>
       const scorePlusSelect = containerMinusSelect.querySelector(".scoreName");
       console.log(scorePlusSelect.dataset.value);
       
-      if (counter == 0) {
-        counter += 1;
+      if (counterMinus == 0) {
+        counterMinus += 1;
         const valueScore = Number(scorePlusSelect.dataset.value);
+        /*Output: al presionar el boton, cambiaremos el valor dependiendo del boton que se presione*/
+
         scorePlusSelect.textContent = valueScore - 1;
         scorePlusSelect.dataset.value = valueScore - 1;
-        console.log(scorePlusSelect.dataset.value);
+        
+        ////
       }
+
       else {
-        counter -= 1;
-        console.log(scorePlusSelect.dataset.value);
+        counterMinus -= 1;
         const valueScore = Number(scorePlusSelect.dataset.value);
+        /*Output: al presionar el boton por segunda vez, este volvera a su valor inicial*/
+        
         scorePlusSelect.textContent = valueScore + 1;
         scorePlusSelect.dataset.value = valueScore + 1;
+        
+        ////
       }
-
     }
-
-
   }
 )
 )
 
-////
+//// ------------------------------------------------- ////
+
+/*Evento de botones "replies": 
+
+  Crea nuevos "repliesComments" al precionar cualquiera de los botones "replies", permitiendo
+  responder al comment al cual corresponde el boton.
+
+*/
+
+/*Input: buscaremos los botones por las clases en el mapeado principal*/
 
 const repliesBtn = document.querySelectorAll(".btn_replies");
 const repliesBtnComment = document.querySelectorAll(".btnRepliesComments");
+
+////
 
 repliesBtn.forEach(replycomment =>
   replycomment.addEventListener("click", () => {
@@ -219,7 +311,7 @@ repliesBtn.forEach(replycomment =>
     
     const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
                                 <div class="usernameReplies">
-                                  <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
+                                  <img class="imgUserNew" src="${repliesUser[1].user.image.webp}" alt="hola">
                                   <p class="pUser">${repliesUser[1].user.username}</p>
                                   <p class="createdAt">recently</p>
                                 </div>
@@ -235,7 +327,12 @@ repliesBtn.forEach(replycomment =>
     
     
     `
+    /*Output: seleccionamos la clase que está dentro de cada uno de los contenedores principales, 
+      donde ingresará el mapeo recien creado*/
+
     nameRepliesSelect.querySelector(".repliesComments").insertAdjacentHTML("beforeend", commentProdName);
+
+    ////
 
     const btnSend = nameRepliesSelect.querySelector(".btnCommentSend");
 
@@ -264,7 +361,7 @@ repliesBtnComment.forEach(replycomment =>
     
     const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
                                 <div class="usernameReplies">
-                                  <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
+                                  <img class="imgUserNew" src="${repliesUser[1].user.image.webp}" alt="hola">
                                   <p class="pUser">${repliesUser[1].user.username}</p>
                                   <p class="createdAt">recently</p>
                                 </div>
@@ -280,7 +377,12 @@ repliesBtnComment.forEach(replycomment =>
     
     
     `
+    /*Output: seleccionamos la clase que está dentro de cada uno de los contenedores principales, 
+      donde ingresará el mapeo recien creado*/
+
     nameRepliesSelect.querySelector(".repliesCommentsMenssage").insertAdjacentHTML("beforeend", commentProdName);
+
+    ////
 
     const btnSend = nameRepliesSelect.querySelector(".btnCommentSend");
 
@@ -291,17 +393,33 @@ repliesBtnComment.forEach(replycomment =>
   })
 )
 
-////
+//// ------------------------------------------------- ////
+
+/* evento del boton "edit":
+
+  permite editar el texto del comments del propietario de la cuenta "juliusomo". 
+
+
+*/
+
+/*Input: asignaremos los valores a una variable para usarlas en el evento*/
 
 const username = data["comments"][1].user.username;
 const replies = data["comments"][1].replies;
 const btnEdit = document.querySelector(".btn_edit");
 
+////
+
 btnEdit.addEventListener("click", () => {
+
   console.log("esta editando su texto");
   const editTextComment = document.getElementById(`comments-${5}`);
   const editText = editTextComment.querySelector(".pContentComment");
+
   if (editText) {
+
+    /*Output: cambia a un textarea para poder reescribir el contenido y se añade el boton "update",
+      eliminando el boton "edit"*/
 
     editText.remove();
 
@@ -318,20 +436,47 @@ btnEdit.addEventListener("click", () => {
 
     editTextComment.querySelector(".replies").insertAdjacentHTML("beforeend", updateBtnComment);
 
+    ////
 
   }
 });
 
-///
+//// ------------------------------------------------- ////
 
-const imageCurrentUser = data["currentUser"].image.png
-const currentUser = `<img class="currentImgUser" src="${imageCurrentUser}" alt="hola">`
+/*Asignamos la imagen del "inputComments":
+
+  permite ingresar la foto de perfil en el "inputComment".
+
+*/
+
+/*Input: extraemos la imagen de usuario del "data.json"*/
+
+const imageCurrentUser = data["currentUser"].image.png;
+
+////
+
+/*Output: ingresaremos el nuevo mapeo al contenedor con la clase "inputCommentUsername"*/
+
+const currentUser = `<img class="currentImgUser" src="${imageCurrentUser}" alt="hola">`;
 
 document.querySelector(".inputCommentUsername").insertAdjacentHTML("beforeend", currentUser);
 
-///
+////
+
+//// ------------------------------------------------- ////
+
+/*Evento del boton "delete" y mapeo de ventana emergente:
+
+  Crea la ventana emergente al presionar el boton, dandole opcion al usuario de confirmar 
+  la eliminacion del comments o si desea cancelarlo.
+
+*/
+
+/*Input: selecionamos el boton "delete" del comentario del propietario*/
 
 const btnDelete = document.querySelector(".btn_delete");
+
+////
 
 btnDelete.addEventListener("click", () => {
   console.log("se elimino el comentario")
@@ -353,27 +498,57 @@ btnDelete.addEventListener("click", () => {
   const winEmergentContainer = document.querySelector(".winEmergentContainer")
 
   if (!winEmergentContainer) {
-    document.querySelector(".windowsEemergent").insertAdjacentHTML("beforeend", winEmergent);
+
+    /*Output: ingresamos el mapeado de la ventana emergente en el contenedor seleccionado*/
+
+    document.querySelector(".windowsEmergent").insertAdjacentHTML("beforeend", winEmergent);
+  
+    ////
+
   }
 
   if (winEmergentContainer) {
     winEmergentContainer.style.display = "flex"
   }
 
-  ////
+//// ------------------------------------------------- ////
+
+  /*Evento del boton "delete" y boton "cancel" en la ventana emergente:
+  
+    cumple con la peticion del usuario, cancelar la eliminacion o confirmar la eliminacion del comment.
+  
+  */
+
+  /*Input: seleccionamos los botones y el contenedor de la ventana emergente*/
 
   const btnEmergentCancel = document.querySelector(".btn_Emergent_cancel");
   const winEmergentRemove = document.querySelector(".winEmergentContainer");
-
-  btnEmergentCancel.addEventListener("click", () => {
-    winEmergentRemove.style.display = "None"
-  })
-
   const btnEmergentDelete = document.querySelector(".btn_Emergent_delete");
 
+  ////
+
+  btnEmergentCancel.addEventListener("click", () => {
+    
+    /*Output: se cierra la ventana emergente, sin afectar el contenido*/
+
+    winEmergentRemove.style.display = "None"
+
+    ////
+
+  })
+
   btnEmergentDelete.addEventListener("click", () => {
+    
     const commentRemoveContainer = document.getElementById(`comments-${5}`);
+    
+    /*Output: se cierra la ventana emergente, eliminando el comment del propietario */
+
     commentRemoveContainer.remove();
     winEmergentRemove.style.display = "None"
+  
+    ////
+
   });
 })
+
+//// ------------------------------------------------- ////
