@@ -202,70 +202,61 @@ if (repliesCommentText) {
 
 const btnPlus = document.querySelectorAll(".btn_plus"); 
 const btnMinus = document.querySelectorAll(".btn_minus");
-let counter = 0;
 
 
 btnPlus.forEach(plus =>
   plus.addEventListener("click", () => {
+    
+    
     const idContainerPlus = plus.id.slice(8);
     const containerPlusSelect = document.getElementById(idContainerPlus);
 
     if (containerPlusSelect) {
       const scorePlusSelect = containerPlusSelect.querySelector(".scoreName");
       console.log(scorePlusSelect.dataset.value);
+
+      console.log(Boolean(scorePlusSelect.dataset.flag));
       
-      if (counter == 0) {
-        counter += 1;
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore + 1;
-        scorePlusSelect.dataset.value = valueScore + 1;
-        console.log(scorePlusSelect.dataset.value);
-      }
-      else {
-        counter -= 1;
-        console.log(scorePlusSelect.dataset.value);
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore - 1;
-        scorePlusSelect.dataset.value = valueScore - 1;
+      const flag = scorePlusSelect.dataset.flag ? Boolean(scorePlusSelect.dataset.flag) : false;
+      let currentButtonValue = Number(scorePlusSelect.dataset.value)
+
+      if (!flag) {
+        currentButtonValue += 1;
+        scorePlusSelect.dataset.flag = "true";
       }
 
+      scorePlusSelect.textContent = currentButtonValue.toString();
+      scorePlusSelect.dataset.value = currentButtonValue.toString();
     }
+  }
+  )
+);
 
 
-  })
-)
 btnMinus.forEach(minus =>
   minus.addEventListener("click", () => {
+    
 
     const idContainerMinus = minus.id.slice(9);
     const containerMinusSelect = document.getElementById(idContainerMinus);
     console.log(containerMinusSelect);
 
-    if (containerMinusSelect){
-      const scorePlusSelect = containerMinusSelect.querySelector(".scoreName");
-      console.log(scorePlusSelect.dataset.value);
-      
-      if (counter == 0) {
-        counter += 1;
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore - 1;
-        scorePlusSelect.dataset.value = valueScore - 1;
-        console.log(scorePlusSelect.dataset.value);
-      }
-      else {
-        counter -= 1;
-        console.log(scorePlusSelect.dataset.value);
-        const valueScore = Number(scorePlusSelect.dataset.value);
-        scorePlusSelect.textContent = valueScore + 1;
-        scorePlusSelect.dataset.value = valueScore + 1;
+    if (containerMinusSelect) {
+      const scoreMinusSelect = containerMinusSelect.querySelector(".scoreName");
+      const flag = scoreMinusSelect.dataset.flag ? Boolean(scoreMinusSelect.dataset.flag) : false;
+      let currentButtonValue = Number(scoreMinusSelect.dataset.value)
+
+      if (!flag) {
+        currentButtonValue -= 1;
+        scoreMinusSelect.dataset.flag = "true";
       }
 
+      scoreMinusSelect.textContent = currentButtonValue.toString();
+      scoreMinusSelect.dataset.value = currentButtonValue.toString();
     }
 
-
-  }
-  )
-)
+})
+);
 
 //// ------------------------------------------------- ////
 
