@@ -133,7 +133,7 @@
         row-gap: 16%;
         column-gap: 1%;
     }
-    .pContentComment {
+    .pContentComment, .pContentCommentNew {
         font-size: clamp(1.000rem, calc(0.839rem + 0.335vw), 1.375rem);
 
     }
@@ -190,6 +190,36 @@
         display: grid;
         grid-template-columns: 10% 70% 16%;;
         column-gap: 2%;
+    }
+    .form-message {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+    .message {
+        width: 99%;
+        height: 98%;
+        border-radius: 10px;
+        border: 1px solid rgb(212, 212, 212);
+        padding-bottom: 65px; 
+        padding-left: 5px;
+        font-size: clamp(1.000rem, calc(0.839rem + 0.335vw), 1.375rem);
+    }
+    .form-message-replies{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .messageText, .messageTextReplies{
+        width: 93%;
+        height: 98%;
+        border-radius: 10px;
+        border: 1px solid rgb(212, 212, 212);
+        padding-bottom: 65px; 
+        padding-left: 5px;
+        font-size: clamp(1.000rem, calc(0.839rem + 0.335vw), 1.375rem);
     }
     .inputCommentText {
         height: 80px;

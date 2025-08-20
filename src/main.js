@@ -284,12 +284,10 @@ repliesBtn.forEach(replycomment =>
     const btnNameReplies = nameRepliesSelect.querySelector(".btn_replies");
     console.log(btnNameReplies);
 
-
-
     const repliesUser = data["comments"][1].replies;
 
 
-    const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
+    const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${btnNameReplies.dataset.value}">
                                 <div class="usernameReplies">
                                   <img class="imgUserNew" src="${repliesUser[1].user.image.webp}" alt="hola">
                                   <p class="pUser">${repliesUser[1].user.username}</p>
@@ -301,7 +299,9 @@ repliesBtn.forEach(replycomment =>
                                   </button>
                                 </div>
                                 <div class="contentReplies" id="repliesContent">
-                                  <p class="pTextInput"><textarea class="textEditAreaComment" maxlength="300" class="newTextInputComment">@${btnNameReplies.dataset.value} </textarea></p>
+                                  <form class="form-message-replies">
+                                    <input class="messageText" name="message" placeholder="Escriba su mensaje...">
+                                  </form>
                                 </div>    
                             </div>
     
@@ -313,11 +313,50 @@ repliesBtn.forEach(replycomment =>
     nameRepliesSelect.querySelector(".repliesComments").insertAdjacentHTML("beforeend", commentProdName);
 
     ////
+    let inputContainer = document.getElementById(`repliesCommentNew-${btnNameReplies.dataset.value}`);
+    const inputValueReplies = inputContainer.querySelector(".messageText");
+    inputValueReplies.value = `@${btnNameReplies.dataset.value} `
+    console.log(inputValueReplies);
+    
 
     const btnSend = nameRepliesSelect.querySelector(".btnCommentSend");
 
     btnSend.addEventListener("click", () => {
       console.log("su respuesta se ha enviado");
+      const containerLast = document.getElementById(`repliesCommentNew-${btnNameReplies.dataset.value}`);
+      containerLast.remove();
+      const commentPublic = ` <div class="repliesCommentsContainer" id="containerComments-${repliesUser[1].user.username}" >  
+                                <div class="repliesContentContainer" data-value="${repliesUser[1].user.username}" id="comments-${repliesUser[1].user.username}">
+                                  <div class="score">
+                                    <button class="btn_plus" data-value="${repliesUser[1].user.username}" id="btnPlus-comments-${repliesUser[1].user.username}"><img src="./src/assets/icon-plus.svg" alt=""></button>
+                                    <p data-value="0" class="scoreName">0</p>
+                                    <button class="btn_minus" data-value="${repliesUser[1].user.username}" id="btnMinus-comments-${repliesUser[1].user.username}"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                                  </div>
+                                  <div class="username">
+                                    <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
+                                    <p>${repliesUser[1].user.username}</p>
+                                    <div class="propietarycomment">
+                                      <p>you</p>
+                                    </div>
+                                    <p class="createdAt">Actually</p>
+                                  </div>
+                                  <div class="deleteContainer">
+                                  </div>
+                                  <div class="replies">
+                                    <button data-value="${repliesUser[1].user.username}" class="btnRepliesComments" id="btnReply-containerComments-${repliesUser[1].user.username}">
+                                      <img src="./src/assets/icon-reply.svg"" alt="">
+                                      <p>Reply</p>
+                                    </button>
+                                  </div>
+                                  <div class="content">
+                                    <p class="pContentComment"><b class="bRepliesComment">${inputValueReplies.value}</p>
+                                  </div>    
+                                </div>
+                                <div class="repliesCommentsMenssage" id="repliesCommentsMenssage-${repliesUser[1].user.username}">
+                                </div>
+                              </div>
+    `
+    nameRepliesSelect.querySelector(".repliesComments").insertAdjacentHTML("beforeend", commentPublic);
     })
 
   })
@@ -339,7 +378,7 @@ repliesBtnComment.forEach(replycomment =>
     const repliesUser = data["comments"][1].replies;
 
 
-    const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${1}">
+    const commentProdName = `<div class="repliesContentContainerNew" data-value="${repliesUser[1].user.username}" id="repliesCommentNew-${btnNameReplies.dataset.value}">
                                 <div class="usernameReplies">
                                   <img class="imgUserNew" src="${repliesUser[1].user.image.webp}" alt="hola">
                                   <p class="pUser">${repliesUser[1].user.username}</p>
@@ -351,7 +390,9 @@ repliesBtnComment.forEach(replycomment =>
                                   </button>
                                 </div>
                                 <div class="contentReplies" id="repliesContent">
-                                  <p class="pTextInput"><textarea class="textEditAreaComment" maxlength="300" class="newTextInputComment">@${btnNameReplies.dataset.value} </textarea></p>
+                                  <form class="form-message-replies">
+                                    <input class="messageTextReplies" name="message" placeholder="Escriba su mensaje...">
+                                  </form>                                
                                 </div>    
                             </div>
     
@@ -364,11 +405,51 @@ repliesBtnComment.forEach(replycomment =>
 
     ////
 
+    let inputContainer = document.getElementById(`repliesCommentNew-${btnNameReplies.dataset.value}`); 
+    console.log(inputContainer);
+    const inputValueReplies = inputContainer.querySelector(".messageTextReplies");
+    inputValueReplies.value = `@${btnNameReplies.dataset.value} `;
+
+
     const btnSend = nameRepliesSelect.querySelector(".btnCommentSend");
 
     btnSend.addEventListener("click", () => {
-      console.log("su respuesta se ha enviado");
+      const containerLast = document.getElementById(`repliesCommentNew-${btnNameReplies.dataset.value}`);
+      containerLast.remove();
+      const commentPublic = ` <div class="repliesCommentsContainer" id="containerComments-${repliesUser[1].user.username}" >  
+                                <div class="repliesContentContainer" data-value="${repliesUser[1].user.username}" id="comments-${repliesUser[1].user.username}">
+                                  <div class="score">
+                                    <button class="btn_plus" data-value="${repliesUser[1].user.username}" id="btnPlus-comments-${repliesUser[1].user.username}"><img src="./src/assets/icon-plus.svg" alt=""></button>
+                                    <p data-value="0" class="scoreName">0</p>
+                                    <button class="btn_minus" data-value="${repliesUser[1].user.username}" id="btnMinus-comments-${repliesUser[1].user.username}"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                                  </div>
+                                  <div class="username">
+                                    <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
+                                    <p>${repliesUser[1].user.username}</p>
+                                    <div class="propietarycomment">
+                                      <p>you</p>
+                                    </div>
+                                    <p class="createdAt">Actually</p>
+                                  </div>
+                                  <div class="deleteContainer">
+                                  </div>
+                                  <div class="replies">
+                                    <button data-value="${repliesUser[1].user.username}" class="btnRepliesComments" id="btnReply-containerComments-${repliesUser[1].user.username}">
+                                      <img src="./src/assets/icon-reply.svg"" alt="">
+                                      <p>Reply</p>
+                                    </button>
+                                  </div>
+                                  <div class="content">
+                                    <p class="pContentComment"><b class="bRepliesComment">${inputValueReplies.value}</p>
+                                  </div>    
+                                </div>
+                                <div class="repliesCommentsMenssage" id="repliesCommentsMenssage-${repliesUser[1].user.username}">
+                                </div>
+                              </div>
+    `
+    nameRepliesSelect.querySelector(".repliesCommentsMenssage").insertAdjacentHTML("beforeend", commentPublic);;
     })
+
 
   })
 )
@@ -442,6 +523,55 @@ const currentUser = `<img class="currentImgUser" src="${imageCurrentUser}" alt="
 document.querySelector(".inputCommentUsername").insertAdjacentHTML("beforeend", currentUser);
 
 ////
+
+//// ------------------------------------------------- ////
+
+const formValue = document.querySelector(".form-message");
+const messageValue = document.querySelector(".message");
+
+formValue.addEventListener("submit", (event) => {
+  event.preventDefault();
+  console.log(messageValue.value);
+
+  let valueCommentClone = messageValue.value;
+
+  messageValue.value = "";
+
+  const repliesUser = data["comments"][1].replies;
+
+  const commentNew =   `<div class="repliesCommentsContainer" id="containerComments-${repliesUser[1].user.username}" > 
+                          <div class="commentsContainer" data-value="${repliesUser[1].user.username}" id="comments-${repliesUser[1].user.username}">
+                            <div class="score">
+                              <button class="btn_plus" data-value="${repliesUser[1].user.username}" id="btnPlus-comments-${repliesUser[1].user.username}"><img src="./src/assets/icon-plus.svg" alt=""></button>
+                              <p data-value="0" class="scoreName">0</p>
+                              <button class="btn_minus" data-value="${repliesUser[1].user.username}" id="btnMinus-comments-${repliesUser[1].user.username}"><img src="./src/assets/icon-minus.svg" alt=""></button>
+                            </div>
+                            <div class="username">
+                              <img class="imgUser" src="${repliesUser[1].user.image.webp}" alt="hola">
+                              <p data-value="${repliesUser[1].user.username}" id="username-${repliesUser[1].user.username}">${repliesUser[1].user.username}</p>
+                              <div class="propietarycomment">
+                                <p>you</p>
+                              </div>
+                              <p class="createdAt">Actually</p>
+                            </div>
+                            <div class="replies">
+                              <button data-value="${repliesUser[1].user.username}" class="btn_replies" id="btnReply-containerComments-${repliesUser[1].user.username}">
+                                <img src="./src/assets/icon-reply.svg" alt="">
+                                <p>Reply</p>
+                              </button>
+                            </div>
+                            <div class="content">
+                              <p class="pContentCommentNew">${valueCommentClone}</p>
+                            </div>    
+                          </div>
+                          <div class="repliesComments" id="repliesComments-${repliesUser[1].user.username}">
+                          </div>
+                        </div>
+                        `
+
+  document.querySelector("#comments").innerHTML += commentNew;
+})
+
 
 //// ------------------------------------------------- ////
 
