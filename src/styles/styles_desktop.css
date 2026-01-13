@@ -1,0 +1,388 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+@media screen and (min-width:769px) {
+    body {
+        background-color: hsl(240, 57%, 95%);
+    }
+    .commentsContainer {
+        width: 68%;
+        margin: 18%;
+        margin-top:  2%;
+        margin-bottom:  2%;
+        height: 8rem;
+        padding: 2%;
+        font-family: var(--font-family);
+        background-color: white;
+        display: grid;
+        max-width: 60%;
+        grid-template-columns: 8% 79% 10%;
+        grid-template-rows: 20% 80%;
+        border-radius: 10px;
+        row-gap: 16%;
+        column-gap: 1.5%;
+    }
+    .score {
+        width: 65%;
+        margin-bottom: 55%;
+        background-color: hsl(240, 57%, 95%);
+        padding: 2%;
+        border-radius: 8px;
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        display: flex;
+        align-items: center;
+        column-gap: 8%;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    .score button {
+        width: 36%;
+        height: 30px;
+        border: none;
+        background-color: transparent;
+    }
+    .score p {
+        color: hsl(238, 40%, 52%);
+        font-weight: bold;
+    }
+    .username {
+        background-color: transparent;
+        font-weight: bold;
+        grid-column: 2/3;
+        grid-row: 1/2;
+        display: flex;
+        column-gap: 3%;
+        align-items: center;
+
+    }
+    .imgUser{
+        max-width: 6%;
+    }
+    .currentImgUser{
+
+        max-height: 55%;
+
+    }
+    .createdAt{
+        color: hsl(211, 10%, 45%);
+    }
+    .replies {
+        background-color: transparent;
+        width: 100%;
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .btn_replies, .btn_edit, .btnRepliesComments {
+        width: 100%;
+        border: none;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 8%;
+    }
+    .replies p {
+        color: hsl(238, 40%, 52%);
+        font-weight: bold;
+    }
+    .content{
+        font-family: var(--font-family);
+        color: hsl(211, 10%, 45%);
+        background-color: transparent;
+        grid-column: 2/4;
+        grid-row: 2/3;;
+
+
+    }
+    .repliesComments {
+        border-left: 3px solid hsl(0, 0%, 89%);
+        margin-left: 21.5%;
+
+    }
+    .repliesNewContainer {
+        margin-left: 24.5%;
+        border-left: 3px solid hsl(0, 0%, 89%);
+    }
+    .repliesCommentsContainer {
+        background-color: transparent;
+
+
+    }
+    .repliesContentContainer {
+        font-family: var(--font-family);
+        margin: 5%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 73.5%;
+        max-width: 68%;
+        padding: 2%;
+        background-color: white;
+        height: 8rem;
+        display: grid;
+        grid-template-columns: 9% 79% 10%;
+        grid-template-rows: 20% 80%;
+        border-radius: 10px;
+        row-gap: 16%;
+        column-gap: 1%;
+    }
+    .pContentComment, .pContentCommentNew {
+        font-size: clamp(1.000rem, calc(0.839rem + 0.335vw), 1.375rem);
+
+    }
+    .repliesContentContainerNew {
+        font-family: var(--font-family);
+        margin: 2%;
+        width: 73.5%;
+        margin-left: 5.5%;
+        padding: 2%;
+        background-color: white;
+        height: 6rem;
+        max-width: 68%;
+        display: grid;
+        grid-template-columns: 10% 70% 18%;
+        grid-template-rows: 20% 80%;
+        border-radius: 10px;
+        row-gap: 3%;
+        column-gap: 1%;
+    }
+    .deleteContainer{
+        grid-column: 2/ 4;
+        grid-row: 1 / 2;
+        width: 40%;
+        margin-top: 1.4%;
+        margin-left: 59%;
+
+    }
+    .btn_delete{
+        margin-top:-1%;
+        margin-left: 5%;
+        font-weight: bold;
+        color: red;
+        border: none;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        column-gap: 5%;
+    
+    }
+
+    .inputComment{
+        font-family: var(--font-family);
+        width: 68%;
+        margin: 18%;
+        margin-bottom: 2%;
+        margin-top: 2%;
+        height: 6rem;
+        padding: 2%;
+        max-width: 60%;
+        background-color: white;
+        border-radius: 15px;
+        display: grid;
+        grid-template-columns: 10% 70% 16%;;
+        column-gap: 2%;
+    }
+    .form-message {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+    }
+    .message {
+        width: 99%;
+        height: 98%;
+        border-radius: 10px;
+        border: 1px solid rgb(212, 212, 212);
+        padding-bottom: 65px; 
+        padding-left: 5px;
+        font-size: clamp(1.000rem, calc(0.839rem + 0.335vw), 1.375rem);
+    }
+    .form-message-replies{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .messageText, .messageTextReplies{
+        width: 93%;
+        height: 98%;
+        border-radius: 10px;
+        border: 1px solid rgb(212, 212, 212);
+        padding-bottom: 65px; 
+        padding-left: 5px;
+        font-size: clamp(1.000rem, calc(0.839rem + 0.335vw), 1.375rem);
+    }
+    .inputCommentText {
+        height: 80px;
+        border: 1px solid rgb(212, 212, 212);
+        border-radius: 5px;
+        grid-row: 1/2;
+    }
+    .inputCommentUsername {
+        display: flex;
+        grid-column: 1/2;
+        grid-row: 1/2;
+        justify-content: center;
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .btnSendContainer{
+        width: 100%;
+        grid-column: 3/4;
+        grid-row: 1/2;
+    }
+    .btn_send {
+        width: 100%;
+        height: 45px;
+        font-weight: bold;
+        color: white;
+        background-color: hsl(238, 40%, 52%);
+        border: none;
+        border-radius: 8px;
+    }
+    .textAreaComment{
+        grid-column: 2/3;
+        height: 5.9rem;
+        border: 1px solid rgb(212, 212, 212);
+        border-radius: 5px;
+    }
+
+    .textEditArea {
+        border: 1px solid rgb(212, 212, 212);
+        border-radius: 5px;
+        width: 100%;
+        height: 75%;
+    }
+    .btn_update, .btnCommentSend {
+        background-color: hsl(238, 40%, 52%);
+        width: 100%;
+        height: 35px;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+    }
+    .btn_update p, .btnCommentSend p {
+        color: white;
+    }
+    .textEditAreaComment {
+        width: 95%;
+        height: 85px;
+        padding-left: 1%;
+        border-radius: 5px;
+        border: 1px solid rgb(212, 212, 212);
+
+    }
+    .usernameReplies {
+        margin-bottom: 10%;
+        display: flex;
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        align-items: flex-start;
+        justify-content: center;
+    }
+    .imgUserNew {
+        max-width: 50%;
+    }
+    .usernameReplies p {
+        display: none;
+    }
+    .contentReplies {
+        font-family: var(--font-family);
+        color: hsl(211, 10%, 45%);
+        background-color: transparent;
+        grid-column: 2/3;
+        grid-row: 1/3;
+        font-size: 1rem;
+    }
+    .repliesbutton, .btnCommentSend {
+        grid-column: 3/4;
+        height: 70%;
+        font-size: 1rem;
+        grid-row: 1/3;
+    }
+    .winEmergentContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.663);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 3;
+    }
+    .emergentContent {
+      width: 34%;
+      padding: 40px;
+      position: relative;
+      border-radius: 10px;
+      box-sizing: border-box;
+      background-color: white;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      row-gap: 25px;
+    }
+    .propietarycomment {
+        display: flex;
+        width: 8%;
+        height: 85%;
+        border-radius: 2px;
+        font-size: 0.9rem;
+        font-weight: bold;
+        font-family: var(--font-family);
+        background-color: hsl(238, 40%, 52%);
+        color: white;
+        justify-content: center;
+    }
+    .emergentText {
+        font-size: 1.4rem;
+        font-weight: bold;
+        font-family: var(--font-family);
+    }
+    .emergent_question {
+        color: hsl(211, 10%, 45%);
+        font-size: 1.2rem;
+        font-family: var(--font-family);
+    }
+    .emergent_button {
+        font-family: var(--font-family);
+        font-weight: bold;
+        width: 100%;
+        height: 55px;
+        display: flex;
+        column-gap: 50px;
+        justify-content: center;
+    }
+    .btn_Emergent_cancel {
+        font-weight: bold;
+        font-size: 1rem;
+        width: 40%;
+        border: none;
+        background-color: hsl(211, 10%, 45%);
+        color: white;
+        border-radius: 10px;
+
+    }
+    .btn_Emergent_delete {
+        width: 40%;
+        font-weight: bold;
+        font-size: 1rem;
+        border: none;
+        background-color: hsl(358, 79%, 66%);
+        color: white;
+        border-radius: 10px;
+    }
+}
